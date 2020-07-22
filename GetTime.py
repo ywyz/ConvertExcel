@@ -4,12 +4,15 @@
 @LastModifiedBy: ywyz
 @Github: https://github.com/ywyz
 @LastEditors: ywyz
-@LastEditTime: 2020-07-22 21:26:57
+@LastEditTime: 2020-07-22 21:39:10
+返回时间字符串
 '''
+import datetime
+current_time = datetime.datetime.now()
 
 
 class GetTime():
-    """时间类"""
+    """获取时间字符串类"""
     def __init__(self, current_time):
         """"获取当天时间"""
         self.year = current_time.year
