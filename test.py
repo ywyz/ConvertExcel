@@ -4,7 +4,7 @@
 @LastModifiedBy: ywyz
 @Github: https://github.com/ywyz
 @LastEditors: ywyz
-@LastEditTime: 2020-07-22 21:12:26
+@LastEditTime: 2020-07-22 21:25:50
 '''
 import times
 import datetime
@@ -15,4 +15,5 @@ time = times.GetTime(current_time)
 day = time.day
 month = time.month
 year = time.year
-print(day, month, year)
+strings = time.ReturnTimeStrings()
+print(strings)
