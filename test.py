@@ -4,11 +4,9 @@
 @LastModifiedBy: ywyz
 @Github: https://github.com/ywyz
 @LastEditors: ywyz
-@LastEditTime: 2020-07-22 21:42:50
+@LastEditTime: 2020-07-23 11:09:18
 '''
-import GetTime
-import datetime
-current_time = datetime.datetime.now()
+from time import time_string
 
-time = GetTime.GetTime(current_time)
-time_strings = time.ReturnTimeStrings()
+time_strings = time_string()
+print(time_strings)
