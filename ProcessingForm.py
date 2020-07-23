@@ -8,7 +8,9 @@ class ProcessingForm:
         self.sheet = sheet
 
     def GetMaxROW(self):
+        """获取今日表格最大行"""
         return self.sheet.max_row
 
     def GetMaxColumn(self):
+        """获取今日表格最大列"""
         return self.sheet.max_column
