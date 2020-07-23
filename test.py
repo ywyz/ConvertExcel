@@ -6,7 +6,3 @@
 @LastEditors: ywyz
 @LastEditTime: 2020-07-23 11:09:18
 '''
-from time import time_string
-
-time_strings = time_string()
-print(time_strings)

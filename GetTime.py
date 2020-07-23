@@ -7,11 +7,9 @@
 @LastEditTime: 2020-07-22 21:39:10
 返回时间字符串
 '''
-import datetime
-current_time = datetime.datetime.now()
 
 
-class GetTime():
+class GetTime:
     """获取时间字符串类"""
     def __init__(self, current_time):
         """"获取当天时间"""
