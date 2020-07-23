@@ -22,4 +22,5 @@ class CompareTime:
                 row += 1
                 continue
 
-        self.sheet.delete_rows(2, row -2)
+        self.sheet.delete_rows(2, row - 2)
+
