@@ -22,7 +22,7 @@ time_strings = time.ReturnTimeStrings()
 print(time_strings)
 
 # names = input("输入文件名字：")
-wb = openpyxl.load_workbook('example1.xlsx')  # 打开文件
+wb = openpyxl.load_workbook('example.xlsx')  # 打开文件
 wb_sheet = wb["Sheet1"]  # 打开工作簿1
 # 建立教职工和学生工作簿
 teachers = wb.create_sheet("教职工")
