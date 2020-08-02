@@ -23,4 +23,4 @@ class CompareTime:
                 continue
 
         self.sheet.delete_rows(2, row - 2)
-
+        print("删除成功")

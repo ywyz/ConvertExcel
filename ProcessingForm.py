@@ -4,10 +4,8 @@
 
 
 class ProcessingForm:
-    def __init__(self, sheet, teacher, student):
+    def __init__(self, sheet):
         self.sheet = sheet
-        self.teacher = teacher
-        self.student = student
 
     def GetMaxROW(self):
         """获取今日表格最大行"""

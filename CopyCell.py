@@ -25,3 +25,5 @@ class CopyCell:
                     cell1 = self.sheet.cell(row=m, column=n).value
                     self.teacher_sheet.cell(row=m, column=n).value = cell1
                     self.student_sheet.cell(row=m, column=n).value = cell1
+
+        print("复制成功")
