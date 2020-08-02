@@ -11,12 +11,12 @@ class CopyCell:
         当表格值为教职员工，或学生时，遍历从A到最后列，将单元格值复制入新工作簿
         """
         for m in range(1, self.max_row + 1):  # 遍历行
-            for n in range(1, self.max_column):
-                if self.sheet.cell(row=m, column=8).value == '教职员工':
+            for n in range(1, self.max_column + 1):
+                if self.sheet.cell(row=m, column=3).value == '教职员工':
                     cell1 = self.sheet.cell(row=m, column=n).value
                     self.teacher_sheet.cell(row=m, column=n).value = cell1
 
-                elif self.sheet.cell(row=m, column=8).value == '学生':
+                elif self.sheet.cell(row=m, column=3).value == '学生':
                     cell1 = self.sheet.cell(row=m, column=n).value
                     self.student_sheet.cell(row=m, column=n).value = cell1
 
