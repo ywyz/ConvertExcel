@@ -38,5 +38,24 @@ class ProcessingForm:
 
         print("删除空行成功")
 
+    def DeleteRedundantData(self):
+        """删除多次填写的数据"""
 
+        names = []
+        rows = 1
+        delete_rows = []
+        num = 0
+        for cell in self.sheet['D']:
+            if cell.value in names:
+                delete_rows.append(rows)
+                rows += 1
 
+            else:
+                names.append(cell.value)
+                rows += 1
+
+        for x in reversed(delete_rows):
+            self.sheet.delete_rows(x, 1)
+            num += 1
+
+        print("删除", num, "行数据")

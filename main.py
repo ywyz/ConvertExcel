@@ -59,9 +59,13 @@ print(t_max_row)
 t_process.DeleteNoneLines()
 s_process.DeleteNoneLines()
 
-# 删除教师表中幼儿数据列
+# 删除教师表中幼儿数据列和幼儿表中教师数据列
 t_process.DeleteColumn(9, 1)
 t_process.DeleteColumn(13, 20)
 s_process.DeleteColumn(4, 5)
 s_process.DeleteColumn(5, 4)
+wb.save("修改1.xlsx")
+t_process.DeleteRedundantData()
+s_process.DeleteRedundantData()
+
 wb.save("已修改.xlsx")
