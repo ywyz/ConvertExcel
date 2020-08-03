@@ -28,6 +28,7 @@ wb_sheet = wb["Sheet1"]  # 打开工作簿1
 teachers = wb.create_sheet("教职工")
 students = wb.create_sheet("学生")
 
+
 # 获取表格最多行数
 processForm = ProcessingForm.ProcessingForm(wb_sheet)
 max_row = processForm.GetMaxROW()
@@ -64,8 +65,8 @@ t_process.DeleteColumn(9, 1)
 t_process.DeleteColumn(13, 20)
 s_process.DeleteColumn(4, 5)
 s_process.DeleteColumn(5, 4)
-wb.save("修改1.xlsx")
 t_process.DeleteRedundantData()
 s_process.DeleteRedundantData()
+s_process.CompareStudentNumber()
 
 wb.save("已修改.xlsx")

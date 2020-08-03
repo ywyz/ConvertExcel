@@ -59,3 +59,55 @@ class ProcessingForm:
             num += 1
 
         print("删除", num, "行数据")
+
+    def CompareStudentNumber(self):
+        """
+        比较各班学生数量
+        :return:
+        """
+        small_one = 0
+        small_two = 0
+        middle_one = 0
+        middle_two = 0
+        big_one = 0
+        big_two = 0
+        rows = 1
+        for cell in self.sheet['H']:
+            if cell.value == '大班':
+                if self.sheet.cell(rows, 9).value == '一班':
+                    big_one += 1
+                    rows += 1
+                    continue
+                elif self.sheet.cell(rows, 9).value == '二班':
+                    big_two += 1
+                    rows += 1
+                    continue
+            elif cell.value == '中班':
+                if self.sheet.cell(rows, 9).value == '一班':
+                    middle_one += 1
+                    rows += 1
+                    continue
+                elif self.sheet.cell(rows, 9).value == '二班':
+                    middle_two += 1
+                    rows += 1
+                    continue
+            elif cell.value == '小班':
+                if self.sheet.cell(rows, 9).value == '一班':
+                    small_one += 1
+                    rows += 1
+                    continue
+                elif self.sheet.cell(rows, 9).value == '二班':
+                    small_two += 1
+                    rows += 1
+                    continue
+
+            else:
+                rows += 1
+                continue
+
+        print("小一班：", small_one)
+        print("小二班：", small_two)
+        print("中一班：", middle_one)
+        print("中二班：", middle_two)
+        print("大一班：", big_one)
+        print("大二班：", big_two)
