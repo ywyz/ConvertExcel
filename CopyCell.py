@@ -26,4 +26,4 @@ class CopyCell:
                     self.teacher_sheet.cell(row=m, column=n).value = cell1
                     self.student_sheet.cell(row=m, column=n).value = cell1
 
-        print("复制成功")
+        print("复制到学生、教师工作簿成功")

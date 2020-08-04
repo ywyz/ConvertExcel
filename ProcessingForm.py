@@ -18,13 +18,11 @@ class ProcessingForm:
 
     def DeleteColumn(self, start, num):
         self.sheet.delete_cols(start, num)
-        print("删除列成功")
 
     def DeleteNoneLines(self):
         """删除空行"""
         empty = []
         rows = 1
-        print(self.sheet.title)
         for cell in self.sheet['B']:
             if cell.value is not None:
                 rows += 1
@@ -36,8 +34,6 @@ class ProcessingForm:
 
         for x in reversed(empty):
             self.sheet.delete_rows(x)
-
-        print("删除空行成功")
 
     def DeleteRedundantData(self):
         """删除多次填写的数据"""
@@ -58,8 +54,6 @@ class ProcessingForm:
         for x in reversed(delete_rows):
             self.sheet.delete_rows(x, 1)
             num += 1
-
-        print("删除", num, "行数据")
 
     def CompareStudentNumber(self):
         """
@@ -117,6 +111,7 @@ class ProcessingForm:
         # 建立各班正确工作簿
         row = 1
         num = 1
+        temp = 0
         correct_wb = openpyxl.load_workbook("correct.xlsx")
         student = correct_wb["student"]
 
@@ -173,33 +168,46 @@ class ProcessingForm:
             if key in names:
                 continue
             else:
-                print(key, value)
+                print(key, value, "没填")
+                temp += 1
+        print("共有", temp, "人没填")
 
+    def CompareTeacherNumber(self):
+        num = 0
+        for cell in self.sheet['D']:
+            if cell.value == "教职工信息—姓名":
+                continue
 
+            else:
+                num += 1
+        print("教职工：", num)
 
+    def FindTeacherFilledError(self):
+        row = 1
+        num = 1
+        correct_wb = openpyxl.load_workbook("correct.xlsx")
+        teacher = correct_wb["teacher"]
 
+        names = []
+        correct_names = []
+        # 将表中姓名添加进数组中
+        for cell in self.sheet['D']:
+            if cell.value == '教职工信息—姓名':
+                continue
+            else:
+                names.append(cell.value)
+        # 将教职工名字添加进数组中
+        for cell in teacher['A']:
+            correct_names.append(cell.value)
+        #
+        for name in names:
+            if name in correct_names:
+                continue
+            else:
+                print(name, "填错了")
 
-
-
-"""     small_one = []
-        small_two = []
-        middle_one = []
-        middle_two = []
-        big_one = []
-        big_two = []
-        name = []"""
-"""        for cell in student['A']:
-            if student.cell(row, 2).value == "小一":
-                small_one.append(cell.value)
-            elif student.cell(row, 2).value == "小二":
-                small_two.append(cell.value)
-            elif student.cell(row, 2).value == "中一":
-                middle_one.append(cell.value)
-            elif student.cell(row, 2).value == "中二":
-                middle_two.append(cell.value)
-            elif student.cell(row, 2).value == "大一":
-                big_one.append(cell.value)
-            elif student.cell(row, 2).value == "大二":
-                big_two.append(cell.value)
-
-        for """
+        for correct in correct_names:
+            if correct in names:
+                continue
+            else:
+                print(correct, "没填")

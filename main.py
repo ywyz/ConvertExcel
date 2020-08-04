@@ -19,7 +19,7 @@ current_time = datetime.datetime.now()
 time = GetTime.GetTime(current_time)
 time_strings = time.ReturnTimeStrings()
 # 获取当前时间字符串
-print(time_strings)
+print("今日时间：", time_strings)
 
 # names = input("输入文件名字：")
 wb = openpyxl.load_workbook('example.xlsx')  # 打开文件
@@ -40,6 +40,7 @@ time.CompareStrings()
 
 # 删除通用列
 processForm.DeleteColumn(2, 5)
+print("删除第二列到第五列成功")
 
 # 获取删除后的行数和列数
 max_row = processForm.GetMaxROW()
@@ -53,24 +54,32 @@ t_process = ProcessingForm.ProcessingForm(teachers)
 s_process = ProcessingForm.ProcessingForm(students)
 t_max_row = t_process.GetMaxROW()
 s_max_row = s_process.GetMaxROW()
-print(s_max_row)
-print(t_max_row)
+
 
 # 删除空行
 t_process.DeleteNoneLines()
+print("删除教师表空行成功")
 s_process.DeleteNoneLines()
+print("删除学生表空行成功")
 
 # 删除教师表中幼儿数据列和幼儿表中教师数据列
 t_process.DeleteColumn(9, 1)
 t_process.DeleteColumn(13, 20)
+print("删除教师表第9列，13-33列成功")
 s_process.DeleteColumn(4, 5)
 s_process.DeleteColumn(5, 4)
+print("删除教师表第4-8，10-13列成功")
 t_process.DeleteRedundantData()
 s_process.DeleteRedundantData()
+print("删除冗余数据成功")
 # 输出各班已填表人数
 s_process.CompareStudentNumber()
 
 # 查找各班没填人数和错误人数
 s_process.FindStudentFilledError()
 
+# 查找教职工没填人数
+t_process.FindTeacherFilledError()
+
 wb.save("已修改.xlsx")
+print("保存成功")
