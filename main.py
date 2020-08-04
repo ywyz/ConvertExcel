@@ -67,6 +67,10 @@ s_process.DeleteColumn(4, 5)
 s_process.DeleteColumn(5, 4)
 t_process.DeleteRedundantData()
 s_process.DeleteRedundantData()
+# 输出各班已填表人数
 s_process.CompareStudentNumber()
+
+# 查找各班没填人数和错误人数
+s_process.FindStudentFilledError()
 
 wb.save("已修改.xlsx")

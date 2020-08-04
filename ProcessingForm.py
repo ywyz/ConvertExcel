@@ -1,6 +1,7 @@
 """
 寻找表格最大行、列
 """
+import openpyxl
 
 
 class ProcessingForm:
@@ -111,3 +112,94 @@ class ProcessingForm:
         print("中二班：", middle_two)
         print("大一班：", big_one)
         print("大二班：", big_two)
+
+    def FindStudentFilledError(self):
+        # 建立各班正确工作簿
+        row = 1
+        num = 1
+        correct_wb = openpyxl.load_workbook("correct.xlsx")
+        student = correct_wb["student"]
+
+        names = []
+        correct_names = {}
+        # 将表中姓名添加进数组中
+        for cell in self.sheet['D']:
+            names.append(cell.value)
+        # 将各班正确名字添加进字典中
+        for cell in student['A']:
+            correct_names[cell.value] = student.cell(num, 2).value
+            num += 1
+
+        # 将正确字典中的班级复制进表中
+        for cell in self.sheet['D']:
+            if cell.value in correct_names.keys():
+                if correct_names[cell.value] == "小一":
+                    self.sheet.cell(row, 8).value = '小班'
+                    self.sheet.cell(row, 9).value = '一班'
+                    row += 1
+                    continue
+                elif correct_names[cell.value] == "小二":
+                    self.sheet.cell(row, 8).value = '小班'
+                    self.sheet.cell(row, 9).value = '二班'
+                    row += 1
+                    continue
+                elif correct_names[cell.value] == "中一":
+                    self.sheet.cell(row, 8).value = '中班'
+                    self.sheet.cell(row, 9).value = '一班'
+                    row += 1
+                    continue
+                elif correct_names[cell.value] == "中二":
+                    self.sheet.cell(row, 8).value = '中班'
+                    self.sheet.cell(row, 9).value = '二班'
+                    row += 1
+                    continue
+                elif correct_names[cell.value] == "大一":
+                    self.sheet.cell(row, 8).value = '大班'
+                    self.sheet.cell(row, 9).value = '一班'
+                    row += 1
+                    continue
+                elif correct_names[cell.value] == "大二":
+                    self.sheet.cell(row, 8).value = '大班'
+                    self.sheet.cell(row, 9).value = '二班'
+                    row += 1
+                    continue
+            else:
+                row += 1
+                continue
+
+            # 检查是否有没填的人
+
+        for key, value in correct_names.items():
+            if key in names:
+                continue
+            else:
+                print(key, value)
+
+
+
+
+
+
+
+"""     small_one = []
+        small_two = []
+        middle_one = []
+        middle_two = []
+        big_one = []
+        big_two = []
+        name = []"""
+"""        for cell in student['A']:
+            if student.cell(row, 2).value == "小一":
+                small_one.append(cell.value)
+            elif student.cell(row, 2).value == "小二":
+                small_two.append(cell.value)
+            elif student.cell(row, 2).value == "中一":
+                middle_one.append(cell.value)
+            elif student.cell(row, 2).value == "中二":
+                middle_two.append(cell.value)
+            elif student.cell(row, 2).value == "大一":
+                big_one.append(cell.value)
+            elif student.cell(row, 2).value == "大二":
+                big_two.append(cell.value)
+
+        for """
