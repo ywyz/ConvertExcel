@@ -248,3 +248,4 @@ class ProcessingForm:
                     if self.sheet.cell(row=m, column=9).value == "二班":
                         cell1 = self.sheet.cell(row=m, column=n).value
                         small_two.cell(row=m, column=n).value = cell1
+
