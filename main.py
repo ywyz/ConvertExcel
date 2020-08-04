@@ -81,5 +81,13 @@ s_process.FindStudentFilledError()
 # 查找教职工没填人数
 t_process.FindTeacherFilledError()
 
+small_one = wb.create_sheet("小一")
+small_two = wb.create_sheet("小二")
+middle_one = wb.create_sheet("中一")
+middle_two = wb.create_sheet("中二")
+big_one = wb.create_sheet("大一")
+big_two = wb.create_sheet("大二")
+s_process.CopyClass(small_one, small_two, middle_one, middle_two, big_one, big_two)
+print("分班成功")
 wb.save("已修改.xlsx")
 print("保存成功")

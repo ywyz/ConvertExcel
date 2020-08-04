@@ -213,3 +213,38 @@ class ProcessingForm:
                 continue
             else:
                 print(correct, "没填")
+
+    def CopyClass(self, small_one, small_two, middle_one, middle_two, big_one, big_two):
+        """分到各班表格中"""
+        for n in range(1, self.sheet.max_column + 1):
+            cell1 = self.sheet.cell(1, column=n).value
+            small_one.cell(1, column=n).value = cell1
+            small_two.cell(1, column=n).value = cell1
+            middle_one.cell(1, column=n).value = cell1
+            middle_two.cell(1, column=n).value = cell1
+            big_one.cell(1, column=n).value = cell1
+            big_two.cell(1, column=n).value = cell1
+
+        for m in range(2, self.sheet.max_row + 1):  # 遍历行
+            for n in range(1, self.sheet.max_column + 1):
+                if self.sheet.cell(row=m, column=8).value == "大班":
+                    if self.sheet.cell(row=m, column=9).value == "一班":
+                        cell1 = self.sheet.cell(row=m, column=n).value
+                        big_one.cell(row=m, column=n).value = cell1
+                    elif self.sheet.cell(row=m, column=9).value == "二班":
+                        cell1 = self.sheet.cell(row=m, column=n).value
+                        big_two.cell(row=m, column=n).value = cell1
+                if self.sheet.cell(row=m, column=8).value == "中班":
+                    if self.sheet.cell(row=m, column=9).value == "一班":
+                        cell1 = self.sheet.cell(row=m, column=n).value
+                        middle_one.cell(row=m, column=n).value = cell1
+                    if self.sheet.cell(row=m, column=9).value == "二班":
+                        cell1 = self.sheet.cell(row=m, column=n).value
+                        middle_two.cell(row=m, column=n).value = cell1
+                if self.sheet.cell(row=m, column=8).value == "小班":
+                    if self.sheet.cell(row=m, column=9).value == "一班":
+                        cell1 = self.sheet.cell(row=m, column=n).value
+                        small_one.cell(row=m, column=n).value = cell1
+                    if self.sheet.cell(row=m, column=9).value == "二班":
+                        cell1 = self.sheet.cell(row=m, column=n).value
+                        small_two.cell(row=m, column=n).value = cell1
