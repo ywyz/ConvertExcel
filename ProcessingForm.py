@@ -158,9 +158,11 @@ class ProcessingForm:
                     self.sheet.cell(row, 9).value = '二班'
                     row += 1
                     continue
-            else:
+            elif cell.value == "孩子姓名":
                 row += 1
                 continue
+            else:
+                print(cell.value, "不在姓名表中，请核实。")
 
             # 检查是否有没填的人
 
