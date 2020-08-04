@@ -74,13 +74,13 @@ s_process.DeleteRedundantData()
 print("删除冗余数据成功")
 # 输出各班已填表人数
 s_process.CompareStudentNumber()
-
+wb.save("没填人数1.xlsx")
 # 查找各班没填人数和错误人数
 s_process.FindStudentFilledError()
-
+wb.save("没填人数2.xlsx")
 # 查找教职工没填人数
 t_process.FindTeacherFilledError()
-
+wb.save("没填人数final.xlsx")
 small_one = wb.create_sheet("小一")
 small_two = wb.create_sheet("小二")
 middle_one = wb.create_sheet("中一")
@@ -88,6 +88,7 @@ middle_two = wb.create_sheet("中二")
 big_one = wb.create_sheet("大一")
 big_two = wb.create_sheet("大二")
 s_process.CopyClass(small_one, small_two, middle_one, middle_two, big_one, big_two)
+wb.save("复制分班.xlsx")
 # 删除分班后空行
 small_one = ProcessingForm.ProcessingForm(small_one)
 small_two = ProcessingForm.ProcessingForm(small_two)

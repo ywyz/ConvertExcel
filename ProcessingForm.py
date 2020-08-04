@@ -163,6 +163,8 @@ class ProcessingForm:
                 continue
             else:
                 print(cell.value, "不在姓名表中，请核实。")
+                row += 1
+                continue
 
             # 检查是否有没填的人
 
