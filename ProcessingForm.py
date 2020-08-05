@@ -253,3 +253,13 @@ class ProcessingForm:
     def AddSorted(self):
         self.sheet.auto_filter.ref = "A1:Z50"
         self.sheet.auto_filter.add_sort_condition("J1:J50")
+
+    def ChangeNum(self):
+        num = 1
+        for cell in self.sheet['A']:
+            if cell.value == "序号":
+                continue
+
+            else:
+                cell.value = num
+                num += 1

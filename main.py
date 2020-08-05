@@ -78,6 +78,11 @@ s_process.CompareStudentNumber()
 s_process.FindStudentFilledError()
 # 查找教职工没填人数
 t_process.FindTeacherFilledError()
+
+# 更改序号
+s_process.ChangeNum()
+t_process.ChangeNum()
+# 新建各班工作簿
 small_one = wb.create_sheet("小一")
 small_two = wb.create_sheet("小二")
 middle_one = wb.create_sheet("中一")
