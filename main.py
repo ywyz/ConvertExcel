@@ -8,21 +8,20 @@
 '''
 
 import openpyxl
-import GetTime
 import datetime
 import ProcessingForm
-import CompareTime
+from CompareTime import GetNameTime
+from CompareTime import GetTime
 import CopyCell
 
 current_time = datetime.datetime.now()
 # 获取当前时间
-time = GetTime.GetTime(current_time)
-time_strings = time.ReturnTimeStrings()
+time_strings = GetTime(current_time)
 # 获取当前时间字符串
 print("今日时间：", time_strings)
-namestrings = time.TimeStrings()
+namestrings = GetNameTime(current_time)
 
-names = input("输入文件名字或者拖动文件到这儿来：")
+"""names = input("输入文件名字或者拖动文件到这儿来：")
 wb = openpyxl.load_workbook(names)  # 打开文件
 wb_sheet = wb["Sheet1"]  # 打开工作簿1
 # 建立教职工和学生工作簿
@@ -118,3 +117,4 @@ names = namestrings + "防疫信息表.xlsx"
 wb.save(names)
 print("保存成功")
 input("按任意键退出")
+"""
