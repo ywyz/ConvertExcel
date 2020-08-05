@@ -1,12 +1,3 @@
-'''
-@Date: 2020-07-22 20:27:33
-@Author: ywyz
-@LastModifiedBy: ywyz
-@Github: https://github.com/ywyz
-@LastEditors: ywyz
-@LastEditTime: 2020-07-22 22:02:53
-'''
-
 import openpyxl
 import datetime
 import ProcessingForm
@@ -19,33 +10,38 @@ current_time = datetime.datetime.now()
 time_strings = GetTime(current_time)
 # 获取当前时间字符串
 print("今日时间：", time_strings)
-namestrings = GetNameTime(current_time)
+nameStrings = GetNameTime(current_time)
 
-"""names = input("输入文件名字或者拖动文件到这儿来：")
+names = input("输入文件名字或者拖动文件到这儿来：")
 wb = openpyxl.load_workbook(names)  # 打开文件
 wb_sheet = wb["Sheet1"]  # 打开工作簿1
+
+# 删除过时的行
+processForm = ProcessingForm.ProcessingForm(wb_sheet)
+processForm.CompareStrings(time_strings)
+while True:
+    try:
+        line1, line2 = eval(input("请输入表格中可以一起删除的通用列数(如从A列到D列即输入1，4 ):"))
+    except Exception:
+        print("输入错误，请重新输入")
+        continue
+    else:
+        break
+# 删除通用列
+processForm.DeleteColumn(line1, line2)
+print("删除第", line1, "列到第", line2, "成功")
+
 # 建立教职工和学生工作簿
 teachers = wb.create_sheet("教职工")
 students = wb.create_sheet("学生")
 
+processForm.CopyValue(teachers, students)
 
-# 获取表格最多行数
-processForm = ProcessingForm.ProcessingForm(wb_sheet)
-max_row = processForm.GetMaxROW()
-
-
-# 比较时间，删除过时的行
-time = CompareTime.CompareTime(wb_sheet, time_strings, max_row)
-time.CompareStrings()
-
-# 删除通用列
-processForm.DeleteColumn(2, 5)
-print("删除第二列到第五列成功")
+"""
 
 # 获取删除后的行数和列数
 max_row = processForm.GetMaxROW()
 max_column = processForm.GetMaxColumn()
-
 CopyCell = CopyCell.CopyCell(wb_sheet, teachers, students, max_row, max_column)
 CopyCell.CopyValue()
 
@@ -113,8 +109,8 @@ big_one.AddSorted()
 print("添加筛选成功")
 # 删除sheet1
 wb.remove(wb_sheet)
-names = namestrings + "防疫信息表.xlsx"
+"""
+names = nameStrings + "防疫信息表.xlsx"
 wb.save(names)
 print("保存成功")
 input("按任意键退出")
-"""

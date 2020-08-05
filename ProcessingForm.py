@@ -251,10 +251,12 @@ class ProcessingForm:
                         small_two.cell(row=m, column=n).value = cell1
 
     def AddSorted(self):
+        """增加打开后筛选排序"""
         self.sheet.auto_filter.ref = "A1:Z50"
         self.sheet.auto_filter.add_sort_condition("J1:J50")
 
     def ChangeNum(self):
+        """重新设置序号"""
         num = 1
         for cell in self.sheet['A']:
             if cell.value == "序号":
@@ -263,3 +265,39 @@ class ProcessingForm:
             else:
                 cell.value = num
                 num += 1
+
+    def CompareStrings(self, strings):
+        """比较填写时间中是否有今天，没有今天就删除该行"""
+        row = 1
+        for cell in self.sheet['B']:
+            if strings == "提交答卷时间":
+                continue
+            elif strings in cell.value:
+                break
+
+            else:
+                row += 1
+                continue
+
+        self.sheet.delete_rows(2, row - 2)
+        print("删除非今天时间的内容成功")
+
+    def CopyValue(self, teacher, student):
+        """
+        当表格值为教职员工，或学生时，遍历从A到最后列，将单元格值复制入新工作簿
+        """
+        for m in range(1, self.sheet.max_row + 1):  # 遍历行
+            for n in range(1, self.sheet.max_column + 1):
+                if self.sheet.cell(row=m, column=3).value == '教职员工':
+                    cell1 = self.sheet.cell(row=m, column=n).value
+                    teacher.cell(row=m, column=n).value = cell1
+
+                elif self.sheet.cell(row=m, column=3).value == '学生':
+                    cell1 = self.sheet.cell(row=m, column=n).value
+                    student.cell(row=m, column=n).value = cell1
+
+                else:
+
+                    cell1 = self.sheet.cell(row=m, column=n).value
+                    teacher.cell(row=m, column=n).value = cell1
+                    student.cell(row=m, column=n).value = cell1

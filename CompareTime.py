@@ -15,5 +15,5 @@ def GetNameTime(current_time):
     year = current_time.year
     month = current_time.month
     day = current_time.day
-    strings = (str(year) + "/" + str(month) + "/" + str(day))
+    strings = (str(year) + "." + str(month) + "." + str(day))
     return strings
