@@ -22,8 +22,8 @@ time_strings = time.ReturnTimeStrings()
 print("今日时间：", time_strings)
 namestrings = time.TimeStrings()
 
-# names = input("输入文件名字：")
-wb = openpyxl.load_workbook('example.xlsx')  # 打开文件
+names = input("输入文件名字或者拖动文件到这儿来：")
+wb = openpyxl.load_workbook(names)  # 打开文件
 wb_sheet = wb["Sheet1"]  # 打开工作簿1
 # 建立教职工和学生工作簿
 teachers = wb.create_sheet("教职工")
