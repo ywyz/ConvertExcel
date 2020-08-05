@@ -187,8 +187,7 @@ class ProcessingForm:
         print("教职工：", num)
 
     def FindTeacherFilledError(self):
-        row = 1
-        num = 1
+
         correct_wb = openpyxl.load_workbook("correct.xlsx")
         teacher = correct_wb["teacher"]
 
@@ -251,3 +250,6 @@ class ProcessingForm:
                         cell1 = self.sheet.cell(row=m, column=n).value
                         small_two.cell(row=m, column=n).value = cell1
 
+    def AddSorted(self):
+        self.sheet.auto_filter.ref = "A1:Z50"
+        self.sheet.auto_filter.add_sort_condition("J1:J50")
