@@ -20,6 +20,7 @@ time = GetTime.GetTime(current_time)
 time_strings = time.ReturnTimeStrings()
 # 获取当前时间字符串
 print("今日时间：", time_strings)
+namestrings = time.TimeStrings()
 
 # names = input("输入文件名字：")
 wb = openpyxl.load_workbook('example.xlsx')  # 打开文件
@@ -111,5 +112,6 @@ middle_two.AddSorted()
 big_two.AddSorted()
 big_one.AddSorted()
 print("添加筛选成功")
-wb.save("已修改.xlsx")
+names = namestrings + "防疫信息表.xlsx"
+wb.save(names)
 print("保存成功")

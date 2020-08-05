@@ -22,3 +22,8 @@ class GetTime:
         strings = (str(self.year) + "/" + str(self.month) + "/" +
                    str(self.day))
         return strings
+
+    def TimeStrings(self):
+        strings = (str(self.year) + "." + str(self.month) + "." +
+                   str(self.day))
+        return strings
