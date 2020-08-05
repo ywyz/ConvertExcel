@@ -112,6 +112,9 @@ middle_two.AddSorted()
 big_two.AddSorted()
 big_one.AddSorted()
 print("添加筛选成功")
+# 删除sheet1
+wb.remove(wb_sheet)
 names = namestrings + "防疫信息表.xlsx"
 wb.save(names)
 print("保存成功")
+input("按任意键退出")
