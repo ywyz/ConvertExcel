@@ -17,7 +17,6 @@ class CompareTime:
                 continue
             elif self.strings in cell.value:
                 break
-
             else:
                 row += 1
                 continue
