@@ -42,7 +42,7 @@ class ProcessingForm:
         rows = 1
         delete_rows = []
         num = 0
-        for cell in self.sheet['D']:
+        for cell in self.sheet['C']:
             if cell.value in names:
                 delete_rows.append(rows)
                 rows += 1
@@ -124,7 +124,7 @@ class ProcessingForm:
         names = []
         correct_names = {}
         # 将表中姓名添加进数组中
-        for cell in self.sheet['D']:
+        for cell in self.sheet['C']:
             names.append(cell.value)
         # 将各班正确名字添加进字典中
         for cell in student['A']:
@@ -132,42 +132,10 @@ class ProcessingForm:
             num += 1
 
         # 将正确字典中的班级复制进表中
-        for cell in self.sheet['D']:
+        for cell in self.sheet['C']:
             if cell.value in correct_names.keys():
-                if correct_names[cell.value] == "小一":
-                    self.sheet.cell(row, 8).value = '小班'
-                    self.sheet.cell(row, 9).value = '一班'
-                    row += 1
-                    continue
-                elif correct_names[cell.value] == "小二":
-                    self.sheet.cell(row, 8).value = '小班'
-                    self.sheet.cell(row, 9).value = '二班'
-                    row += 1
-                    continue
-                elif correct_names[cell.value] == "中一":
-                    self.sheet.cell(row, 8).value = '中班'
-                    self.sheet.cell(row, 9).value = '一班'
-                    row += 1
-                    continue
-                elif correct_names[cell.value] == "中二":
-                    self.sheet.cell(row, 8).value = '中班'
-                    self.sheet.cell(row, 9).value = '二班'
-                    row += 1
-                    continue
-                elif correct_names[cell.value] == "大一":
-                    self.sheet.cell(row, 8).value = '大班'
-                    self.sheet.cell(row, 9).value = '一班'
-                    row += 1
-                    continue
-                elif correct_names[cell.value] == "大二":
-                    self.sheet.cell(row, 8).value = '大班'
-                    self.sheet.cell(row, 9).value = '二班'
-                    row += 1
-                    continue
-                elif correct_names[cell.value] == "新生":
-                    self.sheet.cell(row, 8).value = '新入园（未分班）'
-                    row += 1
-                    continue
+                row += 1
+                continue
             elif cell.value == "孩子姓名":
                 row += 1
                 continue
@@ -179,10 +147,12 @@ class ProcessingForm:
             # 检查是否有没填的人
 
         for key, value in correct_names.items():
+            if key == None:
+                break
             if key in names:
                 continue
             else:
-                print(key, value, "没填")
+                print(key, "没填")
                 temp += 1
         print("共有", temp, "人没填")
 

@@ -12,6 +12,7 @@ import GetTime
 import datetime
 import ProcessingForm
 import CompareTime
+import CopyCell
 
 current_time = datetime.datetime.now()
 # 获取当前时间
@@ -21,7 +22,7 @@ time_strings = time.ReturnTimeStrings()
 print("今日时间：", time_strings)
 namestrings = time.TimeStrings()
 
-names = 'example.xlsx'#
+names = input("输入文件名字或者拖动文件到这儿来：")
 wb = openpyxl.load_workbook(names)  # 打开文件
 wb_sheet = wb["Sheet1"]  # 打开工作簿1
 
@@ -44,7 +45,6 @@ max_column = processForm.GetMaxColumn()
 # 删除教师表中幼儿数据列和幼儿表中教师数据列
 processForm.DeleteRedundantData()
 print("删除冗余数据成功")
-wb.save("1.xlsx")
 
 # 查找各班没填人数和错误人数
 processForm.FindStudentFilledError()
@@ -53,6 +53,8 @@ processForm.FindStudentFilledError()
 processForm.ChangeNum()
 processForm.DeleteNoneLines()
 
+# 输出各班已填表人数
+processForm.CompareStudentNumber()
 # 删除sheet1
 names = namestrings + "新生防疫信息表.xlsx"
 wb.save(names)
