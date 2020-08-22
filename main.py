@@ -73,13 +73,13 @@ print("删除教师表第4-8，10-13列成功")
 t_process.DeleteRedundantData()
 s_process.DeleteRedundantData()
 print("删除冗余数据成功")
-# 输出各班已填表人数
-s_process.CompareStudentNumber()
+
 # 查找各班没填人数和错误人数
 s_process.FindStudentFilledError()
 # 查找教职工没填人数
 t_process.FindTeacherFilledError()
-
+# 输出各班已填表人数
+s_process.CompareStudentNumber()
 # 更改序号
 s_process.ChangeNum()
 t_process.ChangeNum()
