@@ -42,7 +42,7 @@ class ProcessingForm:
         rows = 1
         delete_rows = []
         num = 0
-        for cell in self.sheet['D']:
+        for cell in self.sheet['C']:
             if cell.value in names:
                 delete_rows.append(rows)
                 rows += 1
@@ -67,6 +67,7 @@ class ProcessingForm:
         big_one = 0
         big_two = 0
         rows = 1
+        newStudent = 0
         for cell in self.sheet['H']:
             if cell.value == '大班':
                 if self.sheet.cell(rows, 9).value == '一班':
@@ -95,6 +96,10 @@ class ProcessingForm:
                     small_two += 1
                     rows += 1
                     continue
+            elif cell.value == "新入园（未分班）":
+                newStudent += 1
+                rows += 1
+                continue
 
             else:
                 rows += 1
@@ -106,6 +111,7 @@ class ProcessingForm:
         print("中二班：", middle_two)
         print("大一班：", big_one)
         print("大二班：", big_two)
+        print("新生：", newStudent)
 
     def FindStudentFilledError(self):
         # 建立各班正确工作簿
@@ -118,7 +124,7 @@ class ProcessingForm:
         names = []
         correct_names = {}
         # 将表中姓名添加进数组中
-        for cell in self.sheet['D']:
+        for cell in self.sheet['C']:
             names.append(cell.value)
         # 将各班正确名字添加进字典中
         for cell in student['A']:
@@ -126,38 +132,10 @@ class ProcessingForm:
             num += 1
 
         # 将正确字典中的班级复制进表中
-        for cell in self.sheet['D']:
+        for cell in self.sheet['C']:
             if cell.value in correct_names.keys():
-                if correct_names[cell.value] == "小一":
-                    self.sheet.cell(row, 8).value = '小班'
-                    self.sheet.cell(row, 9).value = '一班'
-                    row += 1
-                    continue
-                elif correct_names[cell.value] == "小二":
-                    self.sheet.cell(row, 8).value = '小班'
-                    self.sheet.cell(row, 9).value = '二班'
-                    row += 1
-                    continue
-                elif correct_names[cell.value] == "中一":
-                    self.sheet.cell(row, 8).value = '中班'
-                    self.sheet.cell(row, 9).value = '一班'
-                    row += 1
-                    continue
-                elif correct_names[cell.value] == "中二":
-                    self.sheet.cell(row, 8).value = '中班'
-                    self.sheet.cell(row, 9).value = '二班'
-                    row += 1
-                    continue
-                elif correct_names[cell.value] == "大一":
-                    self.sheet.cell(row, 8).value = '大班'
-                    self.sheet.cell(row, 9).value = '一班'
-                    row += 1
-                    continue
-                elif correct_names[cell.value] == "大二":
-                    self.sheet.cell(row, 8).value = '大班'
-                    self.sheet.cell(row, 9).value = '二班'
-                    row += 1
-                    continue
+                row += 1
+                continue
             elif cell.value == "孩子姓名":
                 row += 1
                 continue
@@ -169,10 +147,12 @@ class ProcessingForm:
             # 检查是否有没填的人
 
         for key, value in correct_names.items():
+            if key == None:
+                break
             if key in names:
                 continue
             else:
-                print(key, value, "没填")
+                print(key, "没填")
                 temp += 1
         print("共有", temp, "人没填")
 
@@ -215,7 +195,7 @@ class ProcessingForm:
             else:
                 print(correct, "没填")
 
-    def CopyClass(self, small_one, small_two, middle_one, middle_two, big_one, big_two):
+    def CopyClass(self, small_one, small_two, middle_one, middle_two, big_one, big_two, newStudent):
         """分到各班表格中"""
         for n in range(1, self.sheet.max_column + 1):
             cell1 = self.sheet.cell(1, column=n).value
@@ -225,6 +205,7 @@ class ProcessingForm:
             middle_two.cell(1, column=n).value = cell1
             big_one.cell(1, column=n).value = cell1
             big_two.cell(1, column=n).value = cell1
+            newStudent.cell(1, column=n).value = cell1
 
         for m in range(2, self.sheet.max_row + 1):  # 遍历行
             for n in range(1, self.sheet.max_column + 1):
@@ -235,20 +216,23 @@ class ProcessingForm:
                     elif self.sheet.cell(row=m, column=9).value == "二班":
                         cell1 = self.sheet.cell(row=m, column=n).value
                         big_two.cell(row=m, column=n).value = cell1
-                if self.sheet.cell(row=m, column=8).value == "中班":
+                elif self.sheet.cell(row=m, column=8).value == "中班":
                     if self.sheet.cell(row=m, column=9).value == "一班":
                         cell1 = self.sheet.cell(row=m, column=n).value
                         middle_one.cell(row=m, column=n).value = cell1
                     if self.sheet.cell(row=m, column=9).value == "二班":
                         cell1 = self.sheet.cell(row=m, column=n).value
                         middle_two.cell(row=m, column=n).value = cell1
-                if self.sheet.cell(row=m, column=8).value == "小班":
+                elif self.sheet.cell(row=m, column=8).value == "小班":
                     if self.sheet.cell(row=m, column=9).value == "一班":
                         cell1 = self.sheet.cell(row=m, column=n).value
                         small_one.cell(row=m, column=n).value = cell1
                     if self.sheet.cell(row=m, column=9).value == "二班":
                         cell1 = self.sheet.cell(row=m, column=n).value
                         small_two.cell(row=m, column=n).value = cell1
+                elif self.sheet.cell(row=m, column=8).value == "新入园（未分班）":
+                    cell1 = self.sheet.cell(row=m, column=n).value
+                    newStudent.cell(row=m, column=n).value = cell1
 
     def AddSorted(self):
         self.sheet.auto_filter.ref = "A1:Z50"
