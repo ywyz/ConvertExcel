@@ -1,5 +1,5 @@
 import openpyxl
-from ReturnTime import GetToday, GetYesterday, GetName
+from ReturnTime import GetToday, GetName
 from ProcessForm import CompareTime
 import students
 
@@ -16,10 +16,10 @@ CompareTime(GetToday(), ws1)
 while True:
     choose = input("今日是否统计教师(y/n):")
     if choose == 'y' or choose == 'Y':
-
+        students.Process(newWb, ws1, True)
         break
     elif choose == 'n' or choose == 'N':
-        students.Process(ws1)
+        students.Process(newWb, ws1)
         break
 
     else:
@@ -28,8 +28,3 @@ newName = GetName()
 
 newWb.save(newName)
 print("保存成功")
-
-
-
-
-
