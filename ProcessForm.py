@@ -15,3 +15,8 @@ def CompareTime(today,ws):
 
     print("删除", row - 1, "行")
     ws.delete_rows(2, row - 2)
+
+
+def deleteRows(ws, column_a, column_b):
+    """删除指定列"""
+    ws.delete_cols(column_a, column_b)
