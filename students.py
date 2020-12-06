@@ -1,4 +1,4 @@
-from ProcessForm import deleteRows, newSheet, divideForm
+from ProcessForm import deleteRows, newSheet, divideForm, deleteNullLines
 
 
 def Process(wb, ws, teacher=False):
@@ -6,4 +6,5 @@ def Process(wb, ws, teacher=False):
     print("删除2-5列成功")
     newSheet(wb, teacher)
     divideForm(wb, teacher)
+    deleteNullLines(wb)
 

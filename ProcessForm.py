@@ -38,7 +38,21 @@ def copyCell(ws1, ws2, rows):
         ws2.cell(row=rows, column=n).value = cell1
 
 
-def deleteNullLines()
+def deleteNullLines(wb):
+    for sheet in wb.get_sheet_names():
+        rows = 1
+        empty = []
+        for cell in wb[sheet]['B']:
+            if cell.value is not None:
+                rows += 1
+                continue
+            else:
+                empty.append(rows)
+                rows += 1
+                continue
+        for x in reversed(empty):
+            wb[sheet].delete_rows(x)
+    print("删除空行成功")
 
 
 def divideForm(wb, teacher=False):
