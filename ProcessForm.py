@@ -85,15 +85,8 @@ def divideForm(wb, teacher=False):
                 rows += 1
                 continue
         else:
-            copyCell(ws1, wb["小一班"], rows)
-            copyCell(ws1, wb["小二班"], rows)
-            copyCell(ws1, wb["错误"], rows)
-            copyCell(ws1, wb["中一班"], rows)
-            copyCell(ws1, wb["中二班"], rows)
-            copyCell(ws1, wb["大一班"], rows)
-            copyCell(ws1, wb["大二班"], rows)
-            if teacher:
-                copyCell(ws1, wb["教职工"], rows)
+            for sheet in wb.get_sheet_names():
+                copyCell(ws1, wb[sheet], rows)
             rows += 1
             continue
 
