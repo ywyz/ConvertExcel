@@ -38,6 +38,9 @@ def copyCell(ws1, ws2, rows):
         ws2.cell(row=rows, column=n).value = cell1
 
 
+def deleteNullLines()
+
+
 def divideForm(wb, teacher=False):
     """分到相应单元格"""
     ws1 = wb["Sheet1"]
