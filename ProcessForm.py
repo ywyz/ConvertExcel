@@ -14,9 +14,9 @@ def CompareTime(today, ws):
     ws.delete_rows(2, row - 2)
 
 
-def deleteRows(ws, column_a, column_b):
+def deleteRows(ws, column_a, num):
     """删除指定列"""
-    ws.delete_cols(column_a, column_b)
+    ws.delete_cols(column_a, num)
 
 
 def newSheet(wb1, teacher=False):
